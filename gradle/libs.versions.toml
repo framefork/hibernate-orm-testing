@@ -12,17 +12,25 @@ testcontainers-mysql = { module = "org.testcontainers:mysql", version.ref = "tes
 postgresql = { module = "org.postgresql:postgresql", version = "42.7.8" }
 mysql = { module = "com.mysql:mysql-connector-j", version = "9.4.0" }
 
-# Each hibernate-orm-testing-NN module compiles against the first release of its line (compileOnly, so the consumer's own
-# hibernate-core decides the runtime version) and runs its tests against the newest patch of the newest minor it covers.
+# Each hibernate-orm-testing-NN module compiles against the first release of its line (compileOnly, so the consumer's own hibernate-core decides the
+# runtime version). Every Hibernate minor is tested at its newest patch: the first minor of a module's range by the module itself, the others by
+# the testing/testing-hibernate-orm-testing-NN modules.
 hibernate-orm-v61-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.1.0.Final" }
-hibernate-orm-v61-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.1.7.Final" }
 hibernate-orm-v62-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.2.0.Final" }
-hibernate-orm-v62-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.2.52.Final" }
 hibernate-orm-v63-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.3.0.Final" }
-hibernate-orm-v63-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.6.59.Final" }
 hibernate-orm-v70-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.0.0.Final" }
-hibernate-orm-v70-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.1.36.Final" }
 hibernate-orm-v72-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.2.0.Final" }
-hibernate-orm-v72-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.4.15.Final" }
 hibernate-orm-v80-compile = { group = "org.hibernate.orm", name = "hibernate-core", version = "8.0.0.CR1" }
+
+hibernate-orm-v61-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.1.7.Final" }
+hibernate-orm-v62-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.2.52.Final" }
+hibernate-orm-v63-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.3.2.Final" }
+hibernate-orm-v64-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.4.10.Final" }
+hibernate-orm-v65-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.5.3.Final" }
+hibernate-orm-v66-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "6.6.59.Final" }
+hibernate-orm-v70-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.0.10.Final" }
+hibernate-orm-v71-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.1.36.Final" }
+hibernate-orm-v72-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.2.25.Final" }
+hibernate-orm-v73-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.3.13.Final" }
+hibernate-orm-v74-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "7.4.15.Final" }
 hibernate-orm-v80-test = { group = "org.hibernate.orm", name = "hibernate-core", version = "8.0.0.CR1" }

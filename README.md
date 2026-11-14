@@ -6,17 +6,18 @@ Primitives for integration tests against Hibernate ORM 6.1 through 8.0, on Postg
 
 Pick the module matching the Hibernate ORM line your code runs on. Each module brings `hibernate-orm-testing-database` with it.
 
-| Hibernate ORM          | Artifact                                                                                                                         |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| 8.0                    | [org.framefork.testing:hibernate-orm-testing-80](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-80) |
-| 7.2, 7.3, 7.4          | [org.framefork.testing:hibernate-orm-testing-72](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-72) |
-| 7.0, 7.1               | [org.framefork.testing:hibernate-orm-testing-70](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-70) |
-| 6.3, 6.4, 6.5, 6.6     | [org.framefork.testing:hibernate-orm-testing-63](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-63) |
-| 6.2                    | [org.framefork.testing:hibernate-orm-testing-62](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-62) |
-| 6.1                    | [org.framefork.testing:hibernate-orm-testing-61](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-61) |
-| none (plain JDBC)      | [org.framefork.testing:hibernate-orm-testing-database](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-database) |
+| Hibernate ORM      | Tested on                    | Artifact                                                                                                                                           |
+|--------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 8.0                | 8.0.0.CR1                    | [org.framefork.testing:hibernate-orm-testing-80](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-80)             |
+| 7.2, 7.3, 7.4      | 7.2.25, 7.3.13, 7.4.15       | [org.framefork.testing:hibernate-orm-testing-72](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-72)             |
+| 7.0, 7.1           | 7.0.10, 7.1.36               | [org.framefork.testing:hibernate-orm-testing-70](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-70)             |
+| 6.3, 6.4, 6.5, 6.6 | 6.3.2, 6.4.10, 6.5.3, 6.6.59 | [org.framefork.testing:hibernate-orm-testing-63](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-63)             |
+| 6.2                | 6.2.52                       | [org.framefork.testing:hibernate-orm-testing-62](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-62)             |
+| 6.1                | 6.1.7                        | [org.framefork.testing:hibernate-orm-testing-61](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-61)             |
+| none (plain JDBC)  | -                            | [org.framefork.testing:hibernate-orm-testing-database](https://central.sonatype.com/artifact/org.framefork.testing/hibernate-orm-testing-database) |
 
 The modules do not bring `hibernate-core`: they compile against the first release of their line and use whatever `hibernate-core` version your test classpath has.
+Every Hibernate ORM minor a module covers is tested at its newest patch, listed in the table.
 `hibernate-orm-testing-80` is built against Hibernate ORM `8.0.0.CR1` until 8.0 is GA.
 
 Minimum supported Java is 17. The tests need a Docker daemon that Testcontainers can reach.
