@@ -31,7 +31,6 @@ jobs:
           java-version: |
             ${{ matrix.jdk }}
             25
-          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
@@ -49,6 +48,11 @@ jobs:
       # Compile once on the standard toolchain (jdkVersion=25, --release minJavaVersion), run tests on the matrix JDK.
       - name: Execute Gradle build
         run: ./gradlew --continue build -Ptests.jdk.version=${{ matrix.jdk }}
+
+      # Gradle's plugin resolver drops the exception behind "Plugin [id: ...] was not found"; only --debug logs it.
+      - name: Show why plugin resolution failed
+        if: failure()
+        run: ./gradlew help --debug 2>&1 | grep -E -B2 -A8 'ModuleVersionResolveException|Received status code|Could not (GET|HEAD|get resource)' | head -200
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v7
@@ -72,7 +76,6 @@ jobs:
           distribution: 'temurin'
           # >= 21: the org.framefork.build plugin artifact requires a JVM 21+ runtime to resolve on the buildscript classpath.
           java-version: 25
-          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
