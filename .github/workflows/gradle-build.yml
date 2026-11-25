@@ -31,12 +31,14 @@ jobs:
           java-version: |
             ${{ matrix.jdk }}
             25
+          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          # basic: the MIT-licensed caching on the GitHub Actions cache; the default 'enhanced' loads a proprietary component under Gradle's Terms of Use
-          cache-provider: basic
+          # setup-java's 'cache: gradle' caches the Gradle home and saves it only from a job that passed; setup-gradle's cache
+          # also saves from a failed job and never replaces an existing key, so one failed run would keep every later run uncached.
+          cache-disabled: true
           add-job-summary-as-pr-comment: on-failure
 
       - name: Gradle toolchains info
@@ -76,12 +78,14 @@ jobs:
           distribution: 'temurin'
           # >= 21: the org.framefork.build plugin artifact requires a JVM 21+ runtime to resolve on the buildscript classpath.
           java-version: 25
+          cache: gradle
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          # basic: the MIT-licensed caching on the GitHub Actions cache; the default 'enhanced' loads a proprietary component under Gradle's Terms of Use
-          cache-provider: basic
+          # setup-java's 'cache: gradle' caches the Gradle home and saves it only from a job that passed; setup-gradle's cache
+          # also saves from a failed job and never replaces an existing key, so one failed run would keep every later run uncached.
+          cache-disabled: true
 
       # strict locking already fails normal builds when a declared version is bumped above the lock; this job
       # catches the silent remainder (declared-lower-than-locked, removed-but-still-locked) by regenerating and diffing.
