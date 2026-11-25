@@ -85,6 +85,11 @@ jobs:
       - name: Regenerate all lockfiles
         run: ./gradlew resolveAndLockAll --write-locks
 
+      # Gradle's plugin resolver drops the exception behind "Plugin [id: ...] was not found"; only --debug logs it.
+      - name: Show why plugin resolution failed
+        if: failure()
+        run: ./gradlew resolveAndLockAll --write-locks --debug 2>&1 | grep -E -B2 -A8 'ModuleVersionResolveException|Received status code|Could not (GET|HEAD|get resource)' | head -200
+
       # '*.lockfile' matches at any depth, including the root settings-gradle.lockfile that '**/*.lockfile' misses
       - name: Verify lockfiles are up to date
         run: git diff --exit-code -- '*.lockfile'
